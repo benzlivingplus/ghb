@@ -1,0 +1,173 @@
+<p></p>
+<br>
+<p></p>
+
+<style>
+  .calc-wrap { padding: 16px 0; max-width: 420px; margin: 0 auto; font-family: 'Sarabun', sans-serif; }
+  .card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .card-header {
+    display: flex; align-items: center; gap: 10px;
+    background: #d4edda; padding: 14px 16px;
+  }
+  .card-num {
+    width: 28px; height: 28px; border-radius: 6px;
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-secondary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 500; color: var(--color-text-primary); flex-shrink: 0;
+  }
+  .card-title { font-size: 15px; font-weight: 500; color: #2a6e35; flex: 1; }
+  .inputs-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .input-block { padding: 12px 16px; }
+  .input-block:first-child { border-right: 0.5px solid var(--color-border-tertiary); }
+  .input-label { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 4px; }
+  .input-val { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+  input[type=number], input[type=text] {
+    width: 100%; border: none; outline: none; background: transparent;
+    font-size: 20px; font-weight: 500; color: #1a6b2a;
+    font-family: inherit; padding: 0; box-shadow: none;
+  }
+  input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .section-title {
+    text-align: center; font-size: 13px; font-weight: 500;
+    color: var(--color-text-secondary);
+    padding: 10px 16px 4px; border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .rate-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 11px 16px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .rate-row:last-child { border-bottom: none; }
+  .rate-label { font-size: 14px; color: var(--color-text-primary); }
+  .rate-sublabel { font-size: 11px; color: var(--color-text-secondary); }
+  .rate-amount { font-size: 17px; font-weight: 500; color: var(--color-text-primary); }
+  .tabs {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 0.5px solid var(--color-border-tertiary);
+  }
+  .tab-btn {
+    padding: 11px; text-align: center; font-size: 13px; cursor: pointer;
+    color: var(--color-text-secondary); border: none; background: transparent;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    font-family: inherit;
+  }
+  .tab-btn.active { background: #d4edda; color: #2a6e35; font-weight: 500; }
+  .tab-btn:first-child { border-right: 0.5px solid var(--color-border-tertiary); }
+  @media (prefers-color-scheme: dark) {
+    .card-header { background: #1a3d21; }
+    .card-title { color: #7dc98a; }
+    .tab-btn.active { background: #1a3d21; color: #7dc98a; }
+  }
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500&display=swap" rel="stylesheet">
+
+<div class="calc-wrap">
+
+  <div class="card" id="card1">
+    <div class="card-header">
+      <div class="card-num">1</div>
+      <div class="card-title">โครงการบ้าน ธอส. สุขใจ ปี 2569</div>
+    </div>
+    <div class="inputs-row">
+      <div class="input-block">
+        <div class="input-label">ระยะเวลา (ปี)</div>
+        <input type="number" id="years1" value="40" min="1" max="40" style="color:#1a6b2a" />
+      </div>
+      <div class="input-block">
+        <div class="input-label">วงเงิน (บาท)</div>
+        <input type="text" id="amount1" value="1,000,000" inputmode="numeric" style="color:#1a6b2a" />
+      </div>
+    </div>
+    <div class="section-title">รายย่อย(1)</div>
+    <div class="rate-row">
+      <div><div class="rate-label">ปีที่ 1–2 : 3%</div></div>
+      <div class="rate-amount" id="p1r1">3,800</div>
+    </div>
+    <div class="rate-row">
+      <div><div class="rate-label">ปีที่ 3–4 : MRR–2.00 (4.145%)</div></div>
+      <div class="rate-amount" id="p1r2">4,600</div>
+    </div>
+    <div class="rate-row">
+      <div><div class="rate-label">ปีที่ 5–6 : MRR–1.500 (4.645%)</div></div>
+      <div class="rate-amount" id="p1r3">5,200</div>
+    </div>
+    <div class="rate-row">
+      <div>
+        <div class="rate-label">ปีที่ 7 เป็นต้นไป : MRR–0.7500</div>
+        <div class="rate-sublabel">(5.395%)</div>
+      </div>
+      <div class="rate-amount" id="p1r4">5,700</div>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active"><i class="ti ti-home" aria-hidden="true"></i> สินเชื่อบ้าน</button>
+      <button class="tab-btn"><i class="ti ti-tool" aria-hidden="true"></i> สินเชื่ออุปกรณ์</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const RATES = [0.03, 0.04145, 0.04645, 0.05395];
+const PER100K_30 = [440, 520, 570, 610];
+const PER100K_40 = [380, 460, 520, 570];
+
+function pmt(r, y, p) {
+  const rm = r/12, n = y*12;
+  return p * rm * Math.pow(1+rm,n) / (Math.pow(1+rm,n)-1);
+}
+
+function calcPayment(rate, rIdx, years, amount) {
+  const millions = amount / 1000000;
+  if (years >= 40) return Math.ceil(PER100K_40[rIdx] * 10 * millions / 100) * 100;
+  if (years >= 30) {
+    const p30 = PER100K_30[rIdx], p40 = PER100K_40[rIdx];
+    const per100k = p30 + (p40 - p30) * (years - 30) / 10;
+    return Math.ceil(per100k * 10 * millions / 100) * 100;
+  }
+  const factor30 = PER100K_30[rIdx] * 10 / pmt(rate, 30, 1000000);
+  return Math.ceil(pmt(rate, years, amount) * factor30 / 100) * 100;
+}
+
+function fmt(n) { return n.toLocaleString('th-TH'); }
+
+// จัดการ input วงเงินให้มี comma
+const amountInput1 = document.getElementById('amount1');
+amountInput1.addEventListener('input', function () {
+  let raw = this.value.replace(/,/g, '');
+  if (raw === '' || isNaN(raw)) return;
+  const num = parseInt(raw, 10);
+  const pos = this.selectionStart;
+  const oldLen = this.value.length;
+  this.value = num.toLocaleString('th-TH');
+  // ปรับ cursor ให้ตามหลัง comma
+  const newLen = this.value.length;
+  this.setSelectionRange(pos + (newLen - oldLen), pos + (newLen - oldLen));
+  update(1);
+});
+
+function update(cardNum) {
+  const years = parseFloat(document.getElementById('years'+cardNum).value) || 30;
+  const rawAmount = document.getElementById('amount'+cardNum).value.replace(/,/g, '');
+  const amount = parseFloat(rawAmount) || 1000000;
+  for (let i = 0; i < 4; i++) {
+    const val = calcPayment(RATES[i], i, years, amount);
+    document.getElementById('p'+cardNum+'r'+(i+1)).textContent = fmt(val);
+  }
+}
+
+['years1'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => update(1));
+});
+update(1);
+</script>
