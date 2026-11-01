@@ -11,229 +11,188 @@
 <style>
   :root {
     --brand: #7a1f2b;
-    --brand-deep: #5c1520;
-    --brand-soft: #f7e9eb;
-    --brand-line: #e6c9ce;
+    --head-bg: #f3dfe2;
+    --head-text: #7a1f2b;
     --bg: #f6f1f2;
     --card: #ffffff;
+    --line: #ead6d9;
+    --line-strong: #d9b8bd;
     --text: #2a1a1d;
     --muted: #7b6a6d;
-    --row-alt: #fbf6f7;
-    --input-bg: #ffffff;
-    --shadow: 0 6px 24px rgba(122, 31, 43, .10);
+    --input: #7a1f2b;
   }
   :root[data-theme="dark"] {
     --brand: #c9586a;
-    --brand-deep: #3a0e15;
-    --brand-soft: #2b1519;
-    --brand-line: #4a2a30;
-    --bg: #140c0e;
+    --head-bg: #3a1a20;
+    --head-text: #f0a7b3;
+    --bg: #120a0c;
     --card: #1e1316;
+    --line: #3a252a;
+    --line-strong: #553840;
     --text: #f3e9eb;
     --muted: #b49ca1;
-    --row-alt: #241619;
-    --input-bg: #2a1a1e;
-    --shadow: 0 6px 24px rgba(0, 0, 0, .4);
+    --input: #f0a7b3;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --brand: #c9586a;
-      --brand-deep: #3a0e15;
-      --brand-soft: #2b1519;
-      --brand-line: #4a2a30;
-      --bg: #140c0e;
+      --head-bg: #3a1a20;
+      --head-text: #f0a7b3;
+      --bg: #120a0c;
       --card: #1e1316;
+      --line: #3a252a;
+      --line-strong: #553840;
       --text: #f3e9eb;
       --muted: #b49ca1;
-      --row-alt: #241619;
-      --input-bg: #2a1a1e;
-      --shadow: 0 6px 24px rgba(0, 0, 0, .4);
+      --input: #f0a7b3;
     }
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
   body {
     background: var(--bg); color: var(--text);
-    font-family: 'Noto Sans Thai', sans-serif;
-    font-size: 16px; line-height: 1.5;
+    font-family: 'Noto Sans Thai', sans-serif; line-height: 1.5;
     -webkit-text-size-adjust: 100%;
     min-height: 100vh; min-height: 100dvh;
   }
-  header {
-    background: linear-gradient(135deg, #7a1f2b, #5c1520);
-    color: #fff;
-    padding: calc(18px + env(safe-area-inset-top)) 16px 54px;
+  .calc-wrap {
+    max-width: 520px; margin: 0 auto;
+    padding: calc(14px + env(safe-area-inset-top)) 14px calc(20px + env(safe-area-inset-bottom));
   }
-  .head-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: 560px; margin: 0 auto; }
-  .brand { font-size: 13px; letter-spacing: .08em; opacity: .85; }
-  h1 { margin: 2px 0 0; font-size: 22px; font-weight: 700; line-height: 1.3; }
-  .sub { font-size: 14px; opacity: .85; margin-top: 2px; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .topbar .brand { font-size: 13px; font-weight: 600; letter-spacing: .08em; color: var(--brand); }
   .theme-btn {
-    flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px;
-    border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.12);
-    color: #fff; font-size: 20px; cursor: pointer;
+    width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line-strong);
+    background: var(--card); color: var(--text); font-size: 18px; cursor: pointer;
   }
-  main { max-width: 560px; margin: -38px auto 0; padding: 0 16px calc(24px + env(safe-area-inset-bottom)); }
-  .card { background: var(--card); border-radius: 18px; box-shadow: var(--shadow); overflow: hidden; margin-bottom: 16px; }
-  .inputs { padding: 18px 16px 6px; }
-  .field { margin-bottom: 16px; }
-  .field label { display: block; font-size: 15px; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
-  .input-box {
-    display: flex; align-items: center; gap: 8px;
-    border: 2px solid var(--brand-line); border-radius: 14px;
-    background: var(--input-bg); padding: 0 14px; min-height: 60px;
-    transition: border-color .15s;
+  .card {
+    background: var(--card); border: 1px solid var(--line-strong);
+    border-radius: 16px; overflow: hidden;
   }
-  .input-box:focus-within { border-color: var(--brand); }
-  .input-box input {
-    flex: 1; min-width: 0; border: none; outline: none; background: transparent;
-    font-family: inherit; font-size: 26px; font-weight: 700; color: var(--text); padding: 8px 0;
+  .card-header { display: flex; align-items: center; gap: 12px; background: var(--head-bg); padding: 16px; }
+  .card-num {
+    width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
+    background: var(--card); border: 1px solid var(--line-strong);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 600; color: var(--text);
   }
-  .input-box .unit { font-size: 16px; color: var(--muted); font-weight: 500; }
-  .stepper {
-    width: 44px; height: 44px; border-radius: 12px; border: none;
-    background: var(--brand-soft); color: var(--brand); font-size: 24px; font-weight: 700; cursor: pointer;
-    font-family: inherit; flex-shrink: 0;
+  .card-title { font-size: 18px; font-weight: 600; color: var(--head-text); line-height: 1.35; }
+  .inputs-row { display: grid; grid-template-columns: 0.8fr 1.2fr; border-bottom: 1px solid var(--line); }
+  .input-block { padding: 14px 16px; cursor: text; }
+  .input-block:first-child { border-right: 1px solid var(--line); }
+  .input-label { font-size: 14px; color: var(--muted); margin-bottom: 4px; }
+  .input-block input {
+    width: 100%; border: none; outline: none; background: transparent;
+    font-family: inherit; font-size: 28px; font-weight: 600; color: var(--input);
+    padding: 0 0 4px; border-bottom: 2px dashed var(--line-strong); border-radius: 0;
   }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-  .chip {
-    border: 1.5px solid var(--brand-line); background: transparent; color: var(--text);
-    border-radius: 999px; padding: 6px 14px; font-family: inherit; font-size: 15px; cursor: pointer; min-height: 38px;
-  }
-  #yearChips, #amountChips { display: grid; grid-template-columns: repeat(4, 1fr); }
-  #yearChips { grid-template-columns: repeat(5, 1fr); }
-  #yearChips .chip, #amountChips .chip { padding: 6px 4px; }
-  .chip.on { background: var(--brand); border-color: var(--brand); color: #fff; }
-  .error { color: #d13a4f; font-size: 14px; margin-top: 6px; display: none; }
+  .input-block input:focus { border-bottom: 2px solid var(--brand); }
+  .error { color: #d13a4f; font-size: 13px; margin-top: 4px; display: none; }
   .error.show { display: block; }
-
-  .res-head {
-    background: var(--brand); color: #fff; padding: 14px 16px;
-    display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+  .section-title {
+    text-align: center; font-size: 16px; font-weight: 600; color: var(--muted);
+    padding: 12px 16px 8px; border-bottom: 1px solid var(--line);
   }
-  .res-head .t { font-size: 17px; font-weight: 600; }
-  .res-head .s { font-size: 14px; opacity: .9; text-align: right; }
-  .row {
+  .rate-row {
     display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    padding: 14px 16px; border-top: 1px solid var(--brand-line);
+    padding: 15px 16px; border-bottom: 1px solid var(--line);
   }
-  .row:nth-child(even) { background: var(--row-alt); }
-  .row .lbl { font-size: 17px; font-weight: 600; }
-  .row .rate { font-size: 14px; color: var(--muted); }
-  .row .amt { font-size: 26px; font-weight: 700; color: var(--brand); white-space: nowrap; }
-  .row .amt small { font-size: 14px; font-weight: 500; color: var(--muted); margin-left: 4px; }
-  .note { font-size: 13px; color: var(--muted); padding: 4px 4px 0; }
-  footer { text-align: center; font-size: 13px; color: var(--muted); padding: 8px 0 0; }
+  .rate-label { font-size: 17px; color: var(--text); }
+  .rate-sublabel { font-size: 14px; color: var(--muted); }
+  .rate-amount { font-size: 22px; font-weight: 700; color: var(--text); white-space: nowrap; }
+  .tabs { display: grid; grid-template-columns: 1fr 1fr; }
+  .tab-btn {
+    padding: 14px; font-size: 16px; font-family: inherit; border: none; background: transparent;
+    color: var(--muted); display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .tab-btn svg { width: 18px; height: 18px; }
+  .tab-btn.active { background: var(--head-bg); color: var(--head-text); font-weight: 600; }
+  .tab-btn:first-child { border-right: 1px solid var(--line); }
+  .note { font-size: 13px; color: var(--muted); margin: 12px 4px 0; }
 </style>
 </head>
 <body>
-<header>
-  <div class="head-row">
-    <div>
-      <div class="brand">THE LIVING PLUS</div>
-      <h1>ธอส. บ้านคนละหลัง PLUS</h1>
-      <div class="sub">ผ่อนปรนเกณฑ์รายได้ (PSA) · คำนวณค่างวดผ่อน</div>
-    </div>
+<div class="calc-wrap">
+  <div class="topbar">
+    <span class="brand">THE LIVING PLUS</span>
     <button class="theme-btn" id="themeBtn" aria-label="สลับธีมกลางวัน/กลางคืน">◐</button>
   </div>
-</header>
 
-<main>
-  <section class="card inputs">
-    <div class="field">
-      <label for="amount">วงเงินกู้</label>
-      <div class="input-box">
-        <input id="amount" type="text" inputmode="numeric" autocomplete="off" value="1,000,000" aria-label="วงเงินกู้ (บาท)">
-        <span class="unit">บาท</span>
-      </div>
-      <div class="chips" id="amountChips">
-        <button class="chip" data-v="1000000">1 ล้าน</button>
-        <button class="chip" data-v="1500000">1.5 ล้าน</button>
-        <button class="chip" data-v="2000000">2 ล้าน</button>
-        <button class="chip" data-v="3000000">3 ล้าน</button>
-      </div>
-      <div class="error" id="amountErr">กรุณากรอกวงเงินเป็นตัวเลขมากกว่า 0</div>
+  <div class="card" id="card1">
+    <div class="card-header">
+      <div class="card-num">1</div>
+      <div class="card-title">บ้านคนละหลัง PLUS (ผ่อนปรนเกณฑ์รายได้) (PSA)</div>
     </div>
-    <div class="field">
-      <label for="years">ระยะเวลาผ่อน</label>
-      <div class="input-box">
-        <button class="stepper" id="yMinus" aria-label="ลดปี">−</button>
-        <input id="years" type="text" inputmode="numeric" autocomplete="off" value="40" style="text-align:center" aria-label="ระยะเวลา (ปี)">
-        <span class="unit">ปี</span>
-        <button class="stepper" id="yPlus" aria-label="เพิ่มปี">+</button>
-      </div>
-      <div class="chips" id="yearChips">
-        <button class="chip" data-v="20">20 ปี</button>
-        <button class="chip" data-v="25">25 ปี</button>
-        <button class="chip" data-v="30">30 ปี</button>
-        <button class="chip" data-v="35">35 ปี</button>
-        <button class="chip" data-v="40">40 ปี</button>
-      </div>
-      <div class="error" id="yearsErr">ระยะเวลาต้องอยู่ระหว่าง 1–40 ปี</div>
+    <div class="inputs-row">
+      <label class="input-block">
+        <div class="input-label">ระยะเวลา (ปี)</div>
+        <input type="text" id="years1" value="40" inputmode="numeric" autocomplete="off" />
+        <div class="error" id="yearsErr">1–40 ปี</div>
+      </label>
+      <label class="input-block">
+        <div class="input-label">วงเงิน (บาท)</div>
+        <input type="text" id="amount1" value="1,000,000" inputmode="numeric" autocomplete="off" />
+        <div class="error" id="amountErr">กรอกวงเงิน</div>
+      </label>
     </div>
-  </section>
-
-  <section class="card">
-    <div class="res-head">
-      <span class="t">ค่างวดต่อเดือน (รายย่อย)</span>
-      <span class="s" id="summary"></span>
-    </div>
+    <div class="section-title">รายย่อย(1)</div>
     <div id="rows"></div>
-  </section>
+    <div class="tabs">
+      <button class="tab-btn active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>
+        สินเชื่อบ้าน
+      </button>
+      <button class="tab-btn" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>
+        สินเชื่ออุปกรณ์
+      </button>
+    </div>
+  </div>
 
   <p class="note">* ตัวเลขโดยประมาณ ปัดขึ้นเป็นหลักร้อยแบบระบบธนาคาร ค่างวดจริงขึ้นกับการอนุมัติของ ธอส.</p>
-  <footer>© THE LIVING PLUS · thelivingplus.com</footer>
-</main>
+</div>
 
 <script>
 /*
   ตารางโปร "บ้านคนละหลัง PLUS (ผ่อนปรนเกณฑ์รายได้) (PSA)"
-  label/rate = อัตราที่แสดงตามประกาศธนาคาร
+  label/sub  = อัตราที่แสดงตามประกาศธนาคาร
   calcRate   = อัตราที่ใช้คำนวณค่างวด (ธนาคารคิดค่างวดสูงกว่าอัตราประกาศในบางช่วง)
   ปรับจากหน้าจอระบบ ธอส. (1,000,000 และ 2,000,000 บาท ที่ 40 ปี ตรงครบทุกช่วง)
   ระยะเวลาอื่นใช้สูตรเดียวกัน (โครงสร้างเดียวกับโปรสุขใจ) — ยังไม่ได้ยืนยันกับระบบธนาคาร
   ถ้าได้ตัวเลขจริงเพิ่ม ให้แก้ calcRate ตรงนี้ที่เดียว
 */
 const TIERS = [
-  { label: 'ปีที่ 1–2',        rate: '2.8%',                     calcRate: 0.030 },
-  { label: 'ปีที่ 3',          rate: '3.5%',                     calcRate: 0.035 },
-  { label: 'ปีที่ 4–5',        rate: '4%',                       calcRate: 0.040 },
-  { label: 'ปีที่ 6–7',        rate: 'MRR−2.00 (4.145%)',        calcRate: 0.050 },
-  { label: 'ปีที่ 8 เป็นต้นไป', rate: 'MRR−0.7500 (5.395%)',      calcRate: 0.061 },
+  { label: 'ปีที่ 1–2 : 2.8%',                    calcRate: 0.030 },
+  { label: 'ปีที่ 3 : 3.5%',                      calcRate: 0.035 },
+  { label: 'ปีที่ 4–5 : 4%',                      calcRate: 0.040 },
+  { label: 'ปีที่ 6–7 : MRR–2.00 (4.145%)',       calcRate: 0.050 },
+  { label: 'ปีที่ 8 เป็นต้นไป : MRR–0.7500', sub: '(5.395%)', calcRate: 0.061 },
 ];
 
 function pmt(annualRate, years, principal) {
   const r = annualRate / 12, n = years * 12;
-  if (r === 0) return principal / n;
   const f = Math.pow(1 + r, n);
   return principal * r * f / (f - 1);
 }
-function installment(tier, years, amount) {
-  return Math.ceil(pmt(tier.calcRate, years, amount) / 100) * 100;
-}
+const installment = (t, y, a) => Math.ceil(pmt(t.calcRate, y, a) / 100) * 100;
 const fmt = n => n.toLocaleString('th-TH');
 const $ = id => document.getElementById(id);
+const num = el => { const v = parseInt(el.value.replace(/[^\d]/g, ''), 10); return isNaN(v) ? 0 : v; };
 
-function readAmount() { const v = parseInt($('amount').value.replace(/[^\d]/g, ''), 10); return isNaN(v) ? 0 : v; }
-function readYears() { const v = parseInt($('years').value.replace(/[^\d]/g, ''), 10); return isNaN(v) ? 0 : v; }
-
-function render() {
-  const amount = readAmount(), years = readYears();
-  const okA = amount > 0, okY = years >= 1 && years <= 40;
-  $('amountErr').classList.toggle('show', !okA);
+function update() {
+  const years = num($('years1')), amount = num($('amount1'));
+  const okY = years >= 1 && years <= 40, okA = amount > 0;
   $('yearsErr').classList.toggle('show', !okY);
-  document.querySelectorAll('#amountChips .chip').forEach(c => c.classList.toggle('on', +c.dataset.v === amount));
-  document.querySelectorAll('#yearChips .chip').forEach(c => c.classList.toggle('on', +c.dataset.v === years));
-  $('summary').textContent = okA && okY ? fmt(amount) + ' บ. · ' + years + ' ปี' : '';
-  $('rows').innerHTML = TIERS.map((t, i) => {
-    const val = okA && okY ? fmt(installment(t, years, amount)) : '–';
-    return '<div class="row"><div><div class="lbl">' + t.label + '</div><div class="rate">' + t.rate +
-      '</div></div><div class="amt" data-tier="' + i + '">' + val + '<small>บาท</small></div></div>';
-  }).join('');
+  $('amountErr').classList.toggle('show', !okA);
+  $('rows').innerHTML = TIERS.map(t =>
+    '<div class="rate-row"><div><div class="rate-label">' + t.label + '</div>' +
+    (t.sub ? '<div class="rate-sublabel">' + t.sub + '</div>' : '') +
+    '</div><div class="rate-amount">' + (okY && okA ? fmt(installment(t, years, amount)) : '–') + '</div></div>'
+  ).join('');
 }
 
 // วงเงิน: ใส่ comma อัตโนมัติ โดยรักษาตำแหน่ง cursor
-$('amount').addEventListener('input', e => {
+$('amount1').addEventListener('input', e => {
   const el = e.target;
   const digitsBefore = el.value.slice(0, el.selectionStart).replace(/[^\d]/g, '').length;
   const raw = el.value.replace(/[^\d]/g, '').replace(/^0+(?=\d)/, '');
@@ -241,31 +200,22 @@ $('amount').addEventListener('input', e => {
   let pos = 0, seen = 0;
   while (pos < el.value.length && seen < digitsBefore) { if (/\d/.test(el.value[pos])) seen++; pos++; }
   el.setSelectionRange(pos, pos);
-  render();
+  update();
 });
-$('amount').addEventListener('focus', e => setTimeout(() => e.target.select(), 0));
-$('years').addEventListener('input', e => { e.target.value = e.target.value.replace(/[^\d]/g, '').slice(0, 2); render(); });
-$('years').addEventListener('focus', e => setTimeout(() => e.target.select(), 0));
-function stepYears(d) { const y = Math.min(40, Math.max(1, (readYears() || 40) + d)); $('years').value = y; render(); }
-$('yMinus').addEventListener('click', () => stepYears(-1));
-$('yPlus').addEventListener('click', () => stepYears(1));
-document.querySelectorAll('#amountChips .chip').forEach(c => c.addEventListener('click', () => { $('amount').value = fmt(+c.dataset.v); render(); }));
-document.querySelectorAll('#yearChips .chip').forEach(c => c.addEventListener('click', () => { $('years').value = c.dataset.v; render(); }));
+$('years1').addEventListener('input', e => { e.target.value = e.target.value.replace(/[^\d]/g, '').slice(0, 2); update(); });
+['years1', 'amount1'].forEach(id => $(id).addEventListener('focus', e => setTimeout(() => e.target.select(), 0)));
 
 // ธีมกลางวัน/กลางคืน (จำค่าไว้ในเครื่อง)
-function currentTheme() {
-  const t = document.documentElement.dataset.theme;
-  if (t) return t;
-  return window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-}
-try { const saved = localStorage.getItem('ghb-theme'); if (saved) document.documentElement.dataset.theme = saved; } catch (e) {}
+try { const s = localStorage.getItem('ghb-theme'); if (s) document.documentElement.dataset.theme = s; } catch (e) {}
 $('themeBtn').addEventListener('click', () => {
-  const next = currentTheme() === 'dark' ? 'light' : 'dark';
+  const cur = document.documentElement.dataset.theme ||
+    (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  const next = cur === 'dark' ? 'light' : 'dark';
   document.documentElement.dataset.theme = next;
   try { localStorage.setItem('ghb-theme', next); } catch (e) {}
 });
 
-render();
+update();
 </script>
 </body>
 </html>
